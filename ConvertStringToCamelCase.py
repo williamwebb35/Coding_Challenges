@@ -28,3 +28,26 @@ def to_camel_case(text):
     #print(phrase)
     return(phrase)
 to_camel_case("the-stealth_warrior")
+
+# This version allows for user input of file names
+
+text = input("Enter the filename containing underscores and/or dashes: ")
+pairs_list = []
+pairs_dict = {}
+for i, letter in enumerate(text):
+    pairs_list.append((i,letter))
+   
+   
+pairs_dict = dict(pairs_list)
+for k, v in pairs_dict.items():
+    if not isinstance(v, dict):
+        if '-' in v:
+            pairs_dict[k+1] = pairs_dict[k+1].upper()
+        if '_' in v:
+            pairs_dict[k+1] = pairs_dict[k+1].upper()    
+#print(pairs_dict)
+new = list(pairs_dict.values())
+new = [char.replace('-', '') for char in new]
+new = [char.replace('_', '') for char in new]
+phrase = ''.join(new)
+print(phrase)
